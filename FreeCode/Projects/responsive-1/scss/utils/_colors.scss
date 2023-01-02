@@ -1,0 +1,19 @@
+$prm: (
+ 1: hsl(0, 0%, 100%),
+ 2: hsl(0, 0%, 70%),
+ 3: hsl(0, 0%, 20%),
+ 4: hsl(0, 0%, 0%),
+);
+@function prm($nv) {
+  @return map-get($prm, $nv);
+}
+
+$sec: (
+  1: hsl(0, 98%, 50%),
+  2: hsl(0, 98%, 30%),
+  3: hsl(0, 98%, 15%),   
+);
+@function sec($nv) {
+  @return map-get($sec, $nv);
+}
+
