@@ -1,0 +1,129 @@
+// Typography (Begin)
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+:root {
+  font-size: .9rem;
+  --ff-bold: 'Philosopher', sans-serif;
+  --ff-base: 'Libre Baskerville', serif;
+  --dk: hsl(110, 30%, 20%);
+  --lt: hsl(55, 50%, 90%);
+}
+h1, h2 {
+  font-family: var(--ff-bold);
+  text-align: center;
+}
+p {
+  font-family: var(--ff-base);
+  text-align: justify;
+}
+.ano p {
+  font-family: var(--ff-bold);
+  font-weight: 700;
+}
+#title {
+  font-size: 5vw;
+  padding-bottom: 1vw;
+}
+// Typography (End)
+*, html * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.title-region {
+  padding: 25px;
+}
+// Layout(Begin)
+.container {
+  max-width: 972px;
+  min-width: 400px;
+  margin: 0 auto;
+}
+.flx {
+  display: flex;
+}
+.aln-itm-center {
+  align-items: center;
+}
+#tribute-info {
+  padding: 0 80px 0 50px;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  margin: 30px 0;
+  & .ano {
+    width: 25%;
+    & > p {
+      position: sticky;
+      top: 50px;  
+      font-family: var(--ff-bold);
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--dk);
+    }
+  }
+  & .conteudo {
+    width: 75%;
+    & > p {
+      line-height: 1.75rem;
+    }
+  } 
+}
+// Layout(End)
+header {
+  background-color: var(--dk);
+  color: var(--lt);
+}
+body {
+  background-color: var(--lt);
+}
+.img-container {
+  width: 20%;
+  min-width: 100px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 5px solid var(--lt);
+  overflow: hidden;
+  margin: auto 30px auto 0;
+}
+#image {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  object-position: bottom center;
+}
+#img-div {
+  background-color: #fff;
+  padding: 20px;
+  margin: 30px auto;
+  & figcaption {
+    text-align: center;
+  }
+}
+.title-img {
+  object-fit: cover;
+  width: 100%;
+}
+.footer {
+  background-color: var(--dk);
+  padding: 50px; 
+  & p, h2, a {
+    color: var(--lt);
+    text-align: justify;
+  }
+  & img {
+    display: block;
+    margin: 30px auto 0;
+    filter: invert(100%);
+  }
+}
+.quotation {
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+.sign {
+  display: inline-block;
+  width: 100%;
+  text-align: end;
+}

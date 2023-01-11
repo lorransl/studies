@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+:root {
+  font-size: 0.9rem;
+  --ff-bold: "Philosopher", sans-serif;
+  --ff-base: "Libre Baskerville", serif;
+  --dk: hsl(110, 30%, 20%);
+  --lt: hsl(55, 50%, 90%);
+}
+
+h1, h2 {
+  font-family: var(--ff-bold);
+  text-align: center;
+}
+
+p {
+  font-family: var(--ff-base);
+  text-align: justify;
+}
+
+.ano p {
+  font-family: var(--ff-bold);
+  font-weight: 700;
+}
+
+#title {
+  font-size: 5vw;
+  padding-bottom: 1vw;
+}
+
+*, html * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.title-region {
+  padding: 25px;
+}
+
+.container {
+  max-width: 972px;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+.flx {
+  display: flex;
+}
+
+.aln-itm-center {
+  align-items: center;
+}
+
+#tribute-info {
+  padding: 0 80px 0 50px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin: 30px 0;
+}
+.row .ano {
+  width: 25%;
+}
+.row .ano > p {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  font-family: var(--ff-bold);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--dk);
+}
+.row .conteudo {
+  width: 75%;
+}
+.row .conteudo > p {
+  line-height: 1.75rem;
+}
+
+header {
+  background-color: var(--dk);
+  color: var(--lt);
+}
+
+body {
+  background-color: var(--lt);
+}
+
+.img-container {
+  width: 20%;
+  min-width: 100px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 5px solid var(--lt);
+  overflow: hidden;
+  margin: auto 30px auto 0;
+}
+
+#image {
+  width: 100%;
+  max-height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: bottom center;
+     object-position: bottom center;
+}
+
+#img-div {
+  background-color: #fff;
+  padding: 20px;
+  margin: 30px auto;
+}
+#img-div figcaption {
+  text-align: center;
+}
+
+.title-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
+.footer {
+  background-color: var(--dk);
+  padding: 50px;
+}
+.footer p, .footer h2, .footer a {
+  color: var(--lt);
+  text-align: justify;
+}
+.footer img {
+  display: block;
+  margin: 30px auto 0;
+  filter: invert(100%);
+}
+
+.quotation {
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+
+.sign {
+  display: inline-block;
+  width: 100%;
+  text-align: end;
+}/*# sourceMappingURL=styles.css.map */

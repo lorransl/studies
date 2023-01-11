@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Documentation</title>
+</head>
+<body>
+  <main id="main-doc" class="flex">
+    <nav id="navbar">
+      <header>
+        <img src="https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg" alt="Sass Logo">
+        <h1><span class="sr-only">Sass</span> Documentation</h1>
+      </header>
+      <a href="#Introduction" class="nav-link">Introduction</a>
+      <a href="#Preprocessing" class="nav-link">Preprocessing</a>
+      <a href="#Variables" class="nav-link">Variables</a>
+      <a href="#Nesting" class="nav-link">Nesting</a>
+      <a href="#Partials" class="nav-link">Partials</a>
+      <a href="#Modules" class="nav-link">Modules</a>
+      <a href="#Mixins" class="nav-link">Mixins</a>
+      <a href="#Extend" class="nav-link">Extend</a>
+      <a href="#Operators" class="nav-link">Operators</a>
+    </nav>
+    <div class="container">      
+      <section class="main-section" id="Introduction">
+        <header><h2>Introduction</h2></header>
+        <p class="contrast">Sass is a stylesheet language that’s compiled to CSS. It allows you to use variables, nested rules, mixins, functions, and more, all with a fully CSS-compatible syntax. Sass helps keep large stylesheets well-organized and makes it easy to share design within and across projects. <br>
+        Just like CSS, most Sass stylesheets are mainly made up of style rules that contain property declarations. But Sass stylesheets have many more features that can exist alongside these.</p>
+        <h3>Statements</h3>
+        <p>A Sass stylesheet is made up of a series of statements, which are evaluated in order to build the resulting CSS. Some statements may have blocks, defined using { and }, which contain other statements. For example, a style rule is a statement with a block. That block contains other statements, such as property declarations. <br>  
+        In SCSS, statements are separated by semicolons (which are optional if the statement uses a block). In the indented syntax, they’re just separated by newlines.</p>
+        <h4>Universal Statements</h4> 
+        <p>These types of statements can be used anywhere in a Sass stylesheet:</p>
+        <ul>
+          <li>Variable declarations, like $var: value.</li>
+          <li>Flow control at-rules, like @if and @each.</li>
+          <li>The @error, @warn, and @debug rules.</li>
+        </ul>      
+        <h4>CSS Statements</h4>
+        These statements produce CSS. They can be used anywhere except within a @function:
+        <ul>
+          <li>Style rules, like h1 { /* ... */ }.</li>
+          <li>CSS at-rules, like @media and @font-face.</li>
+          <li>Mixin uses using @include.</li>
+          <li>The @at-root rule.</li>
+        </ul>
+        <h4>Top-Level Statements</h4>
+        These statements can only be used at the top level of a stylesheet, or nested within a CSS statement at the top level:
+        <ul>
+          <li>Module loads, using @use.</li>
+          <li>Imports, using @import.</li>
+          <li>Mixin definitions using @mixin.</li>
+          <li>Function definitions using @function.</li>
+        </ul>      
+        <h4>Other Statements</h4>
+        <ul>
+          <li>Property declarations like width: 100px may only be used within style rules and some CSS at-rules.</li>
+          <li>The @extend rule may only be used within style rules.</li>
+        </ul>
+        <h3>Expressions</h3>
+        <p>An expression is anything that goes on the right-hand side of a property or variable declaration. Each expression produces a value. Any valid CSS property value is also a Sass expression, but Sass expressions are much more powerful than plain CSS values. They’re passed as arguments to mixins and functions, used for control flow with the @if rule, and manipulated using arithmetic. We call Sass’s expression syntax SassScript.</p>
+        <h4>Literals</h4>
+        <p>The simplest expressions just represent static values:</p>
+        <ul>
+          <li>Numbers, which may or may not have units, like 12 or 100px.</li>
+          <li>Strings, which may or may not have quotes, like "Helvetica Neue" or bold.</li>
+          <li>Colors, which can be referred to by their hex representation or by name, like #c6538c or blue.</li>
+          <li>The boolean literals true or false.</li>
+          <li>The singleton null.</li>
+          <li>Lists of values, which may be separated by spaces or commas and which may be enclosed in square brackets or no brackets at all, like 1.5em 1em 0 2em, Helvetica, Arial, sans-serif, or [col1-start].</li>
+          <li>Maps that associate values with keys, like ("background": red, "foreground": pink).</li>
+        </ul>
+        <h4>Operations</h4>
+        <p>Sass defines syntax for a number of operations:</p>
+        <ul>
+          <li>== and != are used to check if two values are the same.</li>
+          <li>+, -, *, /, and % have their usual mathematical meaning for numbers, with special behaviors for units that matches the use of units in scientific math.</li>
+          <li><, <=, >, and >= check whether two numbers are greater or less than one another.</li>
+          <li>and, or, and not have the usual boolean behavior. Sass considers every value “true” except for false and null.</li>
+          <li>+, -, and / can be used to concatenate strings.</li>
+          <li>( and ) can be used to explicitly control the precedence order of operations.</li>
+        </ul>
+        <h4>Other Expressions</h4>
+        <ul>
+          <li>Variables, like $var.</li>
+          <li>Function calls, like nth($list, 1) or var(--main-bg-color), which may call Sass core library functions or user-defined functions, or which may be compiled directly to CSS.</li>
+          <li>Special functions, like calc(1px + 100%) or url(http://myapp.com/assets/logo.png), that have their own unique parsing rules.</li>
+          <li>The parent selector, &.</li>
+          <li>The value !important, which is parsed as an unquoted string.</li>
+        </ul>
+      </section>
+      <section class="main-section" id="Preprocessing">
+        <header><h2>Preprocessing</h2></header>
+        <p>CSS on its own can be fun, but stylesheets are getting larger, more complex, and harder to maintain. This is where a preprocessor can help. Sass has features that don't exist in CSS yet like nesting, mixins, inheritance, and other nifty goodies that help you write robust, maintainable CSS.</p>
+  
+        <p>Once you start tinkering with Sass, it will take your preprocessed Sass file and save it as a normal CSS file that you can use in your website.</p>
+  
+        <p>The most direct way to make this happen is in your terminal. Once Sass is installed, you can compile your Sass to CSS using the sass command. You'll need to tell Sass which file to build from, and where to output CSS to. For example, running sass input.scss output.css from your terminal would take a single Sass file, input.scss, and compile that file to output.css.</p>
+  
+        <p>You can also watch individual files or directories with the --watch flag. The watch flag tells Sass to watch your source files for changes, and re-compile CSS each time you save your Sass. If you wanted to watch (instead of manually build) your input.scss file, you'd just add the watch flag to your command, like so:</p>
+  
+        <code>sass --watch input.scss output.css</code>
+  
+        <p>You can watch and output to directories by using folder paths as your input and output, and separating them with a colon. In this example:</p>
+  
+        <code>sass --watch app/sass:public/stylesheets</code>
+  
+        <p>Sass would watch all files in the app/sass folder for changes, and compile CSS to the public/stylesheets folder.</p>
+  
+        <div class="obs">💡 Fun fact: <br>Sass has two syntaxes! The SCSS syntax (.scss) is used most commonly. It's a superset of CSS, which means all valid CSS is also valid SCSS. The indented syntax (.sass) is more unusual: it uses indentation rather than curly braces to nest statements, and newlines instead of semicolons to separate them. All our examples are available in both syntaxes.</div>
+      </section>
+      <section class="main-section" id="Variables">
+        <header><h2>Variables</h2></header>
+        <p>Think of variables as a way to store information that you want to reuse throughout your stylesheet. You can store things like colors, font stacks, or any CSS value you think you'll want to reuse. Sass uses the 1 symbol to make something a variable. Here's an example:</p>
+        <div class="flex">        
+          <fieldset>
+            <label for="">SCSS SYNTAX</label>
+            <code>
+              $font-stack: Helvetica, sans-serif;<br>
+              $primary-color: #333; <br><br>
+              
+              body {<br>
+                <span class="indent">font: 100% 1font-stack;<br></span>
+                <span class="indent">color: 1primary-color;<br></span>
+              }
+            </code>
+          </fieldset>
+          <fieldset>
+            <label for="">CSS OUTPUT</label>
+            <code>
+              body {<br>
+                <span class="indent">font: 100% Helvetica, sans-serif;<br></span>
+                <span class="indent">color: #333;<br></span>
+              }</code>
+          </fieldset>
+        </div>
+        <p>When the Sass is processed, it takes the variables we define for the 1font-stack and 1primary-color and outputs normal CSS with our variable values placed in the CSS. This can be extremely powerful when working with brand colors and keeping them consistent throughout the site.</p>
+      </section>
+      <section class="main-section" id="Nesting">
+        <header><h2>Nesting</h2></header>
+        <p>When writing HTML you've probably noticed that it has a clear nested and visual hierarchy. CSS, on the other hand, doesn't.</p>
+  
+        <p>Sass will let you nest your CSS selectors in a way that follows the same visual hierarchy of your HTML. Be aware that overly nested rules will result in over-qualified CSS that could prove hard to maintain and is generally considered bad practice.</p>
+  
+        <p>With that in mind, here's an example of some typical styles for a site's navigation:</p>
+        
+        <div class="flex">        
+          <fieldset>
+            <label for="">SCSS SYNTAX</label>
+            <code>
+              nav {<br>
+                <span class="indent">ul {<br><span class="indent"></span>
+                  <span class="indent2">margin: 0;<br></span>
+                  <span class="indent2">padding: 0;<br></span>
+                  <span class="indent2">list-style: none;<br></span>
+                <span class="indent">}<br><br></span>
+              
+                <span class="indent">li { display: inline-block; }</span><br><br>
+              
+                <span class="indent">a {<br></span>
+                  <span class="indent2">display: block;<br>
+                  <span class="indent2">padding: 6px 12px;<br>
+                  <span class="indent2">text-decoration: none;<br>
+                <span class="indent">}<br></span>
+              }
+            </code>
+          </fieldset>
+          <fieldset>
+            <label for="">CSS OUTPUT</label>
+            <code>
+              nav ul {<br>
+                <span class="indent">margin: 0;<br></span>
+                <span class="indent">padding: 0;<br></span>
+                <span class="indent">list-style: none;<br></span>
+              }<br>
+              nav li {<br>
+                <span class="indent">display: inline-block;<br></span>
+              }<br>
+              nav a {<br>
+                <span class="indent">display: block;<br></span>
+                <span class="indent">padding: 6px 12px;<br></span>
+                <span class="indent">text-decoration: none;<br></span>
+              }
+            </code>
+          </fieldset>
+        </div>      
+  
+        <p>You'll notice that the ul, li, and a selectors are nested inside the nav selector. This is a great way to organize your CSS and make it more readable.</p>
+      </section>
+      <section class="main-section" id="Partials">
+        <header><h2>Partials</h2></header>
+        <p>You can create partial Sass files that contain little snippets of CSS that you can include in other Sass files. This is a great way to modularize your CSS and help keep things easier to maintain. A partial is a Sass file named with a leading underscore. You might name it something like _partial.scss. The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the @use rule.</p>
+      </section>
+      <section class="main-section" id="Modules">
+        <header><h2>Modules</h2></header>
+        <p>You don't have to write all your Sass in a single file. You can split it up however you want with the @use rule. This rule loads another Sass file as a module, which means you can refer to its variables, mixins, and functions in your Sass file with a namespace based on the filename. Using a file will also include the CSS it generates in your compiled output!</p>
+        
+        <div class="flex">        
+          <fieldset>
+            <label for="">SCSS SYNTAX</label>
+            <code>          
+              // _base.scss<br>
+              $font-stack: Helvetica, sans-serif;<br>
+              $primary-color: #333;<br><br>
+        
+              body {<br>
+                <span class="indent">font: 100% $font-stack;<br></span>
+                <span class="indent">color: $primary-color;<br></span>
+              }
+            </code>
+            <code>          
+              // styles.scss<br>
+              @use 'base';<br><br>
+        
+              .inverse {<br>
+                <span class="indent">background-color: base.</span>$primary-color;<br>
+                <span class="indent">color: white;<br></span>
+              }
+            </code>
+          </fieldset>
+          <fieldset>
+            <label for="">CSS OUTPUT</label>
+            <code>          
+              body {<br>
+                <span class="indent">font: 100% Helvetica, </span>sans-serif;<br>
+                <span class="indent">color: #333;<br></span>
+              }<br><br>
+        
+              .inverse {<br>
+                <span class="indent">background-color: #333;<br></span>
+                <span class="indent">color: white;<br></span>
+              }
+            </code>
+          </fieldset>
+        </div>      
+  
+        <p>Notice we're using @use 'base'; in the styles.scss file. When you use a file you don't need to include the file extension. Sass is smart and will figure it out for you.</p>
+  
+      </section>
+      <section class="main-section" id="Mixins">
+        <header><h2>Mixins</h2></header>
+        <p>Some things in CSS are a bit tedious to write, especially with CSS3 and the many vendor prefixes that exist. A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. It helps keep your Sass very DRY. You can even pass in values to make your mixin more flexible. Here's an example for theme.</p>
+        
+        <div class="flex">        
+          <fieldset>
+            <label for="">          
+              SCSS SYNTAX
+            </label>
+            <code>          
+              @mixin theme($theme: DarkGray) {<br>
+                <span class="indent">background: $theme;<br></span>
+                <span class="indent">box-shadow: 0 0 1px rgba($theme, .25);<br></span>
+                <span class="indent">color: #fff;<br></span>
+              }<br><br>
+              
+              .info {<br>
+                <span class="indent">@include theme;<br></span>
+              }<br>
+              .alert {<br>
+                <span class="indent">@include theme($theme: DarkRed);<br></span>
+              }<br>
+              .success {<br>
+                <span class="indent">@include theme($theme: DarkGreen);<br></span>
+              }
+            </code>
+          </fieldset>
+          <fieldset>
+            <label for="">          
+              CSS OUTPUT
+            </label>
+            <code>          
+              .info {<br>
+                <span class="indent">background: DarkGray;<br></span>
+                <span class="indent">box-shadow: 0 0 1px rgba(169, 169, 169, 0.25);<br></span>
+                <span class="indent">color: #fff;<br></span>
+              }<br><br>
+              
+              .alert {<br>
+                <span class="indent">background: DarkRed;<br></span>
+                <span class="indent">box-shadow: 0 0 1px rgba(139, 0, 0, 0.25);<br></span>
+                <span class="indent">color: #fff;<br></span>
+              }<br><br>
+              
+              .success {<br>
+                <span class="indent">background: DarkGreen;<br></span>
+                <span class="indent">box-shadow: 0 0 1px rgba(0, 100, 0, 0.25);<br></span>
+                <span class="indent">color: #fff;<br></span>
+              }
+            </code>
+          </fieldset>
+        </div>      
+  
+        <p>To create a mixin you use the @mixin directive and give it a name. We've named our mixin theme. We're also using the variable 1theme inside the parentheses so we can pass in a theme of whatever we want. After you create your mixin, you can then use it as a CSS declaration starting with @include followed by the name of the mixin.</p>
+      </section>
+      <section class="main-section" id="Extend">
+        <header><h2>Extend</h2></header>
+        <p>Using @extend lets you share a set of CSS properties from one selector to another. In our example we're going to create a simple series of messaging for errors, warnings and successes using another feature which goes hand in hand with extend, placeholder classes. A placeholder class is a special type of class that only prints when it is extended, and can help keep your compiled CSS neat and clean.</p>
+        
+        <div class="flex">        
+          <fieldset>
+            <label for="">          
+              SCSS SYNTAX
+            </label>
+            <code>          
+              /* This CSS will print because %message-shared is extended. */<br>
+              %message-shared {<br>
+                <span class="indent">border: 1px solid #ccc;<br></span>
+                <span class="indent">padding: 10px;<br></span>
+                <span class="indent">color: #333;<br></span>
+              }<br><br>
+      
+              // This CSS won't print because %equal-heights is never extended.<br>
+              %equal-heights {<br>
+                <span class="indent">display: flex;<br></span>
+                <span class="indent">flex-wrap: wrap;<br></span>
+              }<br><br>
+              
+              .message {<br>
+                <span class="indent">@extend %message-shared;<br></span>
+              }<br><br>
+      
+              .success {<br>
+                <span class="indent">@extend %message-shared;<br></span>
+                <span class="indent">border-color: green;<br></span>
+              }<br><br>
+      
+              .error {<br>
+                <span class="indent">@extend %message-shared;<br></span>
+                <span class="indent">border-color: red;<br></span>
+              }<br><br>
+      
+              .warning {<br>
+                <span class="indent">@extend %message-shared;<br></span>
+                <span class="indent">border-color: yellow;<br></span>
+              }
+            </code>
+          </fieldset>
+          <fieldset>
+            <label for="">          
+              CSS
+            </label>
+            <code>          
+              /* This CSS will print because %message-shared is extended. */<br>
+              .message, .success, .error, .warning {<br>
+                <span class="indent">border: 1px solid #ccc;<br></span>
+                <span class="indent">padding: 10px;<br></span>
+                <span class="indent">color: #333;<br></span>
+              }<br><br>
+      
+              .success {<br>
+                <span class="indent">border-color: green;<br></span>
+              }<br><br>
+      
+              .error {<br>
+                <span class="indent">border-color: red;<br></span>
+              }<br><br>
+      
+              .warning {<br>
+                <span class="indent">border-color: yellow;<br></span>
+              }
+            </code>
+          </fieldset>
+        </div>
+  
+        <p>What the above code does is tells .message, .success, .error, and .warning to behave just like %message-shared. That means anywhere that %message-shared shows up, .message, .success, .error, & .warning will too. The magic happens in the generated CSS, where each of these classes will get the same CSS properties as %message-shared. This helps you avoid having to write multiple class names on HTML elements.</p>
+  
+        <p>You can extend most simple CSS selectors in addition to placeholder classes in Sass, but using placeholders is the easiest way to make sure you aren't extending a class that's nested elsewhere in your styles, which can result in unintended selectors in your CSS.</p>
+  
+        <p>Note that the CSS in %equal-heights isn't generated, because %equal-heights is never extended.</p>
+      </section>
+      <section class="main-section" id="Operators">
+        <header><h2>Operators</h2></header>
+        <p>Doing math in your CSS is very helpful. Sass has a handful of standard math operators like +, -, *, math.div(), and %. In our example we're going to do some simple math to calculate widths for an article and aside.</p>
+        
+        <div class="flex">        
+          <fieldset>
+            <label for="">          
+              SCSS SYNTAX
+            </label>
+            <code>          
+              @use "sass:math";<br><br>
+        
+              .container {<br>
+                <span class="indent">display: flex;<br></span>
+              }<br><br>
+        
+              article[role="main"] {<br>
+                <span class="indent">width: math.div(600px, 960px) * 100%;<br></span>
+              }<br><br>
+        
+              aside[role="complementary"] {<br>
+                <span class="indent">width: math.div(300px, 960px) * 100%;<br></span>
+                <span class="indent">margin-left: auto;<br></span>
+              }
+            </code>
+          </fieldset>
+          <fieldset>
+            <label for="">          
+              CSS OUTPUT
+            </label>
+            <code>          
+              .container {<br>
+                <span class="indent">display: flex;<br></span>
+              }<br><br>
+        
+              article[role="main"] {<br>
+                <span class="indent">width: 62.5%;<br></span>
+              }<br><br>
+        
+              aside[role="complementary"] {<br>
+                <span class="indent">width: 31.25%;<br></span>
+                <span class="indent">margin-left: auto;<br></span>
+              }
+            </code>
+          </fieldset>
+        </div>  
+  
+        <p>We've created a very simple fluid grid, based on 960px. Operations in Sass let us do something like take pixel values and convert them to percentages without much hassle.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
